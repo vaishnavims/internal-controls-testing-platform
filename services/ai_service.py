@@ -1,13 +1,5 @@
-import openai
-import os
+from services.groq_client import get_ai_response
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-def process_prompt(text):
-    response = openai.ChatCompletion.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "user", "content": text}
-        ]
-    )
-    return response.choices[0].message.content
+def process_text(text: str):
+    response = get_ai_response(text)
+    return response
